@@ -1,0 +1,1 @@
+This will be my first time trying WPF and making with it a password manager that saves loaclly. The plan currently is (04.17) to able to save 5 passwords at one time. Later I wanna make that the user can create and save unlimited passwords.
