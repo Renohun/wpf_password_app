@@ -77,5 +77,25 @@ namespace wpf_password_app
                 MessageBox.Show("Get Gud", ":C", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+        int db = 0;
+        private void Delete_Sys(object sender, RoutedEventArgs e)
+        {
+            db++;
+
+            if (db == 1)
+            {
+                MessageBox.Show("Azt hitted mi? Nyomd meg parszor...", "Delete", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+
+            if(db == 10)
+            {
+                MessageBox.Show("Kitarto vagy! De a helyedben vigyaznek, barmi megtortenhet...", "Delete", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+
+            if (db == 50)
+            {
+                MessageBox.Show("Utolso figyelmeztetes!", "Delete", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }

@@ -50,5 +50,8 @@
 
         <TextBlock Name="Footer_Text" Grid.Row="3" Grid.Column="2" Visibility="Hidden"></TextBlock>
         <!--You have to create a master password first. After that you have to use this password everytime that you want to use this application-->
+
+        <Button Name="delete" Grid.Column="2" Grid.Row="3" Width="100" Height="25" Content="Delete Sys/32" Click="Delete_Sys"></Button>
+        
     </Grid>
 </Window>
