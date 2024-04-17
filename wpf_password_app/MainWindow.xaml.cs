@@ -20,61 +20,61 @@ namespace wpf_password_app
             InitializeComponent();
         }
 
+
+
         private void Create_Button_Click(object sender, RoutedEventArgs e)
         {
-            FileStream fs_is_true = new FileStream("logged_in_once.txt", FileMode.Open); StreamReader sr_true = new StreamReader(fs_is_true, Encoding.UTF8);
+               
+            FileStream fs = new FileStream("master_pw.txt", FileMode.Create); StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
 
-            string is_true = sr_true.ReadToEnd().ToString();
+            sw.WriteLine(pCreate_Box.Password); sw.Close(); fs.Close();
 
-            fs_is_true.Close(); sr_true.Close();
+            Register.Visibility = Visibility.Visible; To_Log_In.Visibility = Visibility.Visible; Hello.Visibility = Visibility.Visible; select_text.Visibility = Visibility.Visible;
 
-            Test.Text = "fajl: " + is_true + " tipusa: szar";
+            pCreate.Visibility = Visibility.Hidden; pCreate_Box.Visibility = Visibility.Hidden; Create_Button.Visibility = Visibility.Hidden;
 
+            MessageBox.Show("Password created successfully! Please Log in!", "Password Created", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
 
-            if (is_true == "true")
+        private void Register_Button_Click(object sender, RoutedEventArgs e)
+        {
+            //Make everything visible
+            pCreate.Visibility = Visibility.Visible; pCreate_Box.Visibility = Visibility.Visible; Create_Button.Visibility = Visibility.Visible;
+
+            //make the others go 'vanish'
+
+            Register.Visibility = Visibility.Hidden; To_Log_In.Visibility = Visibility.Hidden; Hello.Visibility = Visibility.Hidden; select_text.Visibility = Visibility.Hidden;
+
+        }
+
+        private void To_Log_In_Button_Click(object sender, RoutedEventArgs e)
+        {
+            pCreate_Box.Clear();
+
+            //make the others go 'vanish'
+
+            Register.Visibility = Visibility.Hidden; To_Log_In.Visibility = Visibility.Hidden; Hello.Visibility = Visibility.Hidden; select_text.Visibility = Visibility.Hidden;
+
+            //Make everything visible
+            pCreate_Box.Visibility = Visibility.Visible; Log_In_Text.Visibility = Visibility.Visible; Real_Log_In.Visibility = Visibility.Visible;
+        }
+
+        private void Actual_Log_In_Button(object sender, RoutedEventArgs e)
+        {
+            FileStream fs_log_in = new FileStream("master_pw.txt", FileMode.Open); StreamReader sr = new StreamReader(fs_log_in, Encoding.UTF8);
+
+            string password_check = sr.ReadToEnd().ToString(); sr.Close(); fs_log_in.Close();
+
+            Footer_Text.Visibility = Visibility.Visible;
+            Footer_Text.Text = "asd != asd ??? || Beirt jelszo: " + password_check;
+
+            if (password_check == pCreate_Box.Password)
             {
-                FileStream fs_2 = new FileStream("master_password.txt", FileMode.Open); StreamReader sr = new StreamReader(fs_2, Encoding.UTF8);
-
-                string password_in_file = sr.ReadToEnd();
-
-                if (password_in_file == pCreate_Box.Password) 
-                {
-                    pCreate.Visibility = Visibility.Hidden; pCreate_Box.Visibility = Visibility.Hidden; pCreate_Button.Visibility = Visibility.Hidden; Footer_Text.Visibility = Visibility.Hidden;
-
-                    MessageBox.Show("Nice log in", "password", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Wrong password! Try again!", "Password error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-
+                MessageBox.Show("Successfull Log In! GG", ":)", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                if (pCreate_Box.Password == "")
-                {
-                    MessageBox.Show("Input was left empty. Please type a password in!", "No input", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else
-                {
-                    FileStream fs = new FileStream("master_password.txt", FileMode.Create);
-                    StreamWriter writer = new StreamWriter(fs, Encoding.UTF8);
-
-                    writer.WriteLine(pCreate_Box.Password);
-
-                    writer.Close(); fs.Close();
-
-                    //minden eltunik es majd le lesz cserelve
-
-                    pCreate.Visibility = Visibility.Hidden; pCreate_Box.Visibility = Visibility.Hidden; pCreate_Button.Visibility = Visibility.Hidden; Footer_Text.Visibility = Visibility.Hidden;
-
-                    MessageBox.Show("Password was successfully created!", "Password created", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                    FileStream fs_true = new FileStream("logged_in_once.txt", FileMode.Open);
-                    StreamWriter sw = new StreamWriter(fs_true, Encoding.UTF8);
-
-                    sw.WriteLine("true"); sw.Close(); fs_true.Close();
-                }
+                MessageBox.Show("Get Gud", ":C", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
     }
