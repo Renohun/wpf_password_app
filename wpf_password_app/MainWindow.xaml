@@ -5,8 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpf_password_app"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Password Manager" Height="450" Width="800"
+        Background = "DarkGray">
     <Grid>
 
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Name="Footer"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="250"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <!-- margin L,T,R,B-->
+        
+        <TextBlock Name="pCreate" Text="Master password creation:" FontStyle="Normal" Grid.Column="2" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,5" FontWeight="Medium"></TextBlock>
+        <PasswordBox Name="pCreate_Box" Height="30" Width="250" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="13"></PasswordBox>
+
+        <Button Name="pCreate_Button" Grid.Column="2" Grid.Row="2" Height="25" Width="100" Content="Create" Click="Create_Button_Click"></Button>
+
+        <TextBlock Name="Footer_Text" Grid.Row="3" Grid.Column="2"  Text = "You have to create a master password first. After that you have to use this password everytime that you want to use this application" ></TextBlock>
+
+        <TextBlock Name="Test" Grid.Row="2" Grid.Column="3"></TextBlock>
     </Grid>
 </Window>
