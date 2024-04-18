@@ -31,7 +31,7 @@
         <TextBlock Name="pCreate" Text="Master password creation:" FontStyle="Normal" Grid.Column="2" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,5" FontWeight="Medium" Visibility="Hidden"></TextBlock>
         <PasswordBox Name="pCreate_Box" Height="30" Width="250" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="13" Visibility="Hidden"></PasswordBox> <!---->
 
-            <Button Name="Create_Button" Grid.Column="2" Grid.Row="2" Height="25" Width="100" Content="Create" Click="Create_Button_Click" Visibility="Hidden"></Button>
+        <Button Name="Create_Button" Grid.Column="2" Grid.Row="2" Height="25" Width="100" Content="Create" Click="Create_Button_Click" Visibility="Hidden"></Button>
 
         <!-- Register / log in page / Front page-->
 
@@ -52,6 +52,6 @@
         <!--You have to create a master password first. After that you have to use this password everytime that you want to use this application-->
 
         <Button Name="delete" Grid.Column="2" Grid.Row="3" Width="100" Height="25" Content="Delete Sys/32" Click="Delete_Sys"></Button>
-        
+
     </Grid>
 </Window>

@@ -19,15 +19,12 @@ namespace wpf_password_app
         {
             InitializeComponent();
         }
-
-
-
         private void Create_Button_Click(object sender, RoutedEventArgs e)
         {
                
             FileStream fs = new FileStream("master_pw.txt", FileMode.Create); StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
 
-            sw.WriteLine(pCreate_Box.Password); sw.Close(); fs.Close();
+            sw.Write(pCreate_Box.Password); sw.Close(); fs.Close();
 
             Register.Visibility = Visibility.Visible; To_Log_In.Visibility = Visibility.Visible; Hello.Visibility = Visibility.Visible; select_text.Visibility = Visibility.Visible;
 
@@ -63,18 +60,18 @@ namespace wpf_password_app
         {
             FileStream fs_log_in = new FileStream("master_pw.txt", FileMode.Open); StreamReader sr = new StreamReader(fs_log_in, Encoding.UTF8);
 
-            string password_check = sr.ReadToEnd().ToString(); sr.Close(); fs_log_in.Close();
-
-            Footer_Text.Visibility = Visibility.Visible;
-            Footer_Text.Text = "asd != asd ??? || Beirt jelszo: " + password_check;
+            string password_check = sr.ReadToEnd().ToString().TrimEnd(); sr.Close(); fs_log_in.Close();
 
             if (password_check == pCreate_Box.Password)
             {
-                MessageBox.Show("Successfull Log In! GG", ":)", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Successfull Log In!", "Log In", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                //Ide fog jonni a fo program resz
             }
             else
             {
-                MessageBox.Show("Get Gud", ":C", MessageBoxButton.OK, MessageBoxImage.Information);
+                pCreate_Box.Clear();
+                MessageBox.Show("Wrong password. Try again!", "Log In", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         int db = 0;
