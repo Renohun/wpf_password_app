@@ -66,7 +66,19 @@ namespace wpf_password_app
             {
                 MessageBox.Show("Successfull Log In!", "Log In", MessageBoxButton.OK, MessageBoxImage.Information);
 
+
                 //Ide fog jonni a fo program resz
+
+                pCreate_Box.Visibility = Visibility.Hidden; Log_In_Text.Visibility = Visibility.Hidden; Real_Log_In.Visibility = Visibility.Hidden;
+
+
+
+
+
+
+
+
+
             }
             else
             {
