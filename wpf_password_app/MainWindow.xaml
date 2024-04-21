@@ -38,7 +38,7 @@
         <TextBlock Name="Hello" Text="Hello" FontWeight="Medium" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22"></TextBlock>
         <TextBlock Name="select_text" Text="Please select one of the options below" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14.5" Margin="0,0,0,5"></TextBlock>
 
-        <Button Name="Register" Width="100" Height="25" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Content="Register" Click="Register_Button_Click"></Button>
+        <Button Name="Register" Width="100" Height="25" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Content="Register" Click="To_Register_Button_Click"></Button>
         <Button Name="To_Log_In" Width="100" Height="25" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" Content="Log In" Click="To_Log_In_Button_Click"></Button>
 
         <!--Log In-->

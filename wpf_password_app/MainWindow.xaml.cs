@@ -10,6 +10,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Security;
+using System.Windows.Automation.Provider;
 
 namespace wpf_password_app
 {
@@ -21,33 +22,58 @@ namespace wpf_password_app
         }
         private void Create_Button_Click(object sender, RoutedEventArgs e)
         {
-               
-            FileStream fs = new FileStream("master_pw.txt", FileMode.Create); StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
-
-            //shit password enrypction
-
-            List<int> list_ASCII = new List<int>();
-
-            for (int i = 0; i < pCreate_Box.Password.Length; i++)
+            
+            if(pCreate_Box.Password.Length < 5)
             {
-                list_ASCII.Add(Convert.ToInt32(pCreate_Box.Password[i]));
-            }
+                pCreate_Box.Clear();
 
-            for (int i = 0;i < list_ASCII.Count; i++)
+                MessageBox.Show("The password was too short. It must be at least 6 charachters long", "Register Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
             {
-                sw.Write(list_ASCII[i] * 6421);
+                if (pCreate_Box.Password.Contains("#") || pCreate_Box.Password.Contains("$") || pCreate_Box.Password.Contains("&") || pCreate_Box.Password.Contains("%"))
+                {
+
+                    if (pCreate_Box.Password.Contains("0") || pCreate_Box.Password.Contains("1") || pCreate_Box.Password.Contains("2") || pCreate_Box.Password.Contains("3") || pCreate_Box.Password.Contains("4") || pCreate_Box.Password.Contains("5") || pCreate_Box.Password.Contains("6") || pCreate_Box.Password.Contains("7") || pCreate_Box.Password.Contains("8") || pCreate_Box.Password.Contains("9"))
+                    {
+                        FileStream fs = new FileStream("master_pw.txt", FileMode.Create); StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
+
+                        //shit password enrypction
+
+                        List<int> list_ASCII = new List<int>();
+
+                        for (int i = 0; i < pCreate_Box.Password.Length; i++)
+                        {
+                            list_ASCII.Add(Convert.ToInt32(pCreate_Box.Password[i]));
+                        }
+
+                        for (int i = 0; i < list_ASCII.Count; i++)
+                        {
+                            sw.Write(list_ASCII[i] * 6421);
+                        }
+
+                        sw.Close(); fs.Close();
+
+                        Register.Visibility = Visibility.Visible; To_Log_In.Visibility = Visibility.Visible; Hello.Visibility = Visibility.Visible; select_text.Visibility = Visibility.Visible;
+
+                        pCreate.Visibility = Visibility.Hidden; pCreate_Box.Visibility = Visibility.Hidden; Create_Button.Visibility = Visibility.Hidden;
+
+                        MessageBox.Show("Password created successfully! Please Log in!", "Password Created", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        pCreate_Box.Clear(); MessageBox.Show("The password has to contain numbers", "Register Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    
+                }
+                else
+                {
+                    pCreate_Box.Clear(); MessageBox.Show("The password has to contain at least one of these special characters #, $, %, &;", "Register Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-
-            sw.Close(); fs.Close();
-
-            Register.Visibility = Visibility.Visible; To_Log_In.Visibility = Visibility.Visible; Hello.Visibility = Visibility.Visible; select_text.Visibility = Visibility.Visible;
-
-            pCreate.Visibility = Visibility.Hidden; pCreate_Box.Visibility = Visibility.Hidden; Create_Button.Visibility = Visibility.Hidden;
-
-            MessageBox.Show("Password created successfully! Please Log in!", "Password Created", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private void Register_Button_Click(object sender, RoutedEventArgs e)
+        private void To_Register_Button_Click(object sender, RoutedEventArgs e)
         {
             //Make everything visible
             pCreate.Visibility = Visibility.Visible; pCreate_Box.Visibility = Visibility.Visible; Create_Button.Visibility = Visibility.Visible;
