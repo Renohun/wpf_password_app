@@ -24,7 +24,21 @@ namespace wpf_password_app
                
             FileStream fs = new FileStream("master_pw.txt", FileMode.Create); StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
 
-            sw.Write(pCreate_Box.Password); sw.Close(); fs.Close();
+            //shit password enrypction
+
+            List<int> list_ASCII = new List<int>();
+
+            for (int i = 0; i < pCreate_Box.Password.Length; i++)
+            {
+                list_ASCII.Add(Convert.ToInt32(pCreate_Box.Password[i]));
+            }
+
+            for (int i = 0;i < list_ASCII.Count; i++)
+            {
+                sw.Write(list_ASCII[i] * 6421);
+            }
+
+            sw.Close(); fs.Close();
 
             Register.Visibility = Visibility.Visible; To_Log_In.Visibility = Visibility.Visible; Hello.Visibility = Visibility.Visible; select_text.Visibility = Visibility.Visible;
 
@@ -38,7 +52,7 @@ namespace wpf_password_app
             //Make everything visible
             pCreate.Visibility = Visibility.Visible; pCreate_Box.Visibility = Visibility.Visible; Create_Button.Visibility = Visibility.Visible;
 
-            //make the others go 'vanish'
+            //Make the others go 'vanish'
 
             Register.Visibility = Visibility.Hidden; To_Log_In.Visibility = Visibility.Hidden; Hello.Visibility = Visibility.Hidden; select_text.Visibility = Visibility.Hidden;
 
@@ -48,7 +62,7 @@ namespace wpf_password_app
         {
             pCreate_Box.Clear();
 
-            //make the others go 'vanish'
+            //Make the others go 'vanish'
 
             Register.Visibility = Visibility.Hidden; To_Log_In.Visibility = Visibility.Hidden; Hello.Visibility = Visibility.Hidden; select_text.Visibility = Visibility.Hidden;
 
@@ -60,12 +74,23 @@ namespace wpf_password_app
         {
             FileStream fs_log_in = new FileStream("master_pw.txt", FileMode.Open); StreamReader sr = new StreamReader(fs_log_in, Encoding.UTF8);
 
-            string password_check = sr.ReadToEnd().ToString().TrimEnd(); sr.Close(); fs_log_in.Close();
+            // shit password decryption
 
-            if (password_check == pCreate_Box.Password)
+            string real_password = ""; string from_file = "";
+
+            while (!sr.EndOfStream) { from_file = Convert.ToString(sr.ReadLine()); } from_file.TrimEnd();
+
+            for (int i = 0; i < pCreate_Box.Password.Length; i++)
+            {
+                real_password += Convert.ToString(Convert.ToInt32(pCreate_Box.Password[i]) * 6421);
+            }
+
+            sr.Close(); fs_log_in.Close();
+
+            if (from_file == real_password)
             {
                 MessageBox.Show("Successfull Log In!", "Log In", MessageBoxButton.OK, MessageBoxImage.Information);
-
+                    
 
                 //Ide fog jonni a fo program resz
 
