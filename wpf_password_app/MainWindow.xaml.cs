@@ -159,19 +159,19 @@ namespace wpf_password_app
 
         private void delete_pw_1(object sender, RoutedEventArgs e)
         {
-
+            File.Delete(@"C:\\Temp\\wpf_pw_app\\pws\\pw_1.txt");
         }
         private void delete_pw_2(object sender, RoutedEventArgs e)
         {
-
+            File.Delete(@"C:\\Temp\\wpf_pw_app\\pws\\pw_2.txt");
         }
         private void delete_pw_3(object sender, RoutedEventArgs e)
         {
-
+            File.Delete(@"C:\\Temp\\wpf_pw_app\\pws\\pw_3.txt");
         }
         private void delete_pw_4(object sender, RoutedEventArgs e)
         {
-
+            File.Delete(@"C:\\Temp\\wpf_pw_app\\pws\\pw_4.txt");
         }
 
         //create buttons
