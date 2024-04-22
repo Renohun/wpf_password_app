@@ -52,6 +52,35 @@
         <!--You have to create a master password first. After that you have to use this password everytime that you want to use this application-->
 
         <Button Name="delete" Grid.Column="2" Grid.Row="3" Width="100" Height="25" Content="Clear Data" Click="delete_file"></Button>
+        
+        
+        <!--main program part-->
 
+        <!--delete buttons-->
+        <Button Name="delete_1" Grid.Column="4" Grid.Row="0" Width="100" Height="25" Content="Clear Data" Click="delete_pw_1" Visibility="Hidden"></Button>
+        <Button Name="delete_2" Grid.Column="4" Grid.Row="1" Width="100" Height="25" Content="Clear Data" Click="delete_pw_2" Visibility="Hidden"></Button>
+        <Button Name="delete_3" Grid.Column="4" Grid.Row="2" Width="100" Height="25" Content="Clear Data" Click="delete_pw_3" Visibility="Hidden"></Button>
+        <Button Name="delete_4" Grid.Column="4" Grid.Row="3" Width="100" Height="25" Content="Clear Data" Click="delete_pw_4" Visibility="Hidden"></Button>
+
+        <!--Create buttons-->
+
+        <Button Name="create_1" Width="100" Height="25" Content="Create" Grid.Column="3" Click="create_bt_1" Visibility="Hidden"></Button>
+        <Button Name="create_2" Width="100" Height="25" Content="Create" Grid.Column="3" Grid.Row="1" Click="create_bt_2" Visibility="Hidden"></Button>
+        <Button Name="create_3" Width="100" Height="25" Content="Create" Grid.Column="3" Grid.Row="2" Click="create_bt_3" Visibility="Hidden"></Button>
+        <Button Name="create_4" Width="100" Height="25" Content="Create" Grid.Column="3" Grid.Row="3" Click="create_bt_4" Visibility="Hidden"></Button>
+        
+        <!--Password boxes-->
+
+        <PasswordBox Name="box_1" Height="30" Width="250" Grid.Column="2" Visibility="Hidden"></PasswordBox>
+        <PasswordBox Name="box_2" Height="30" Width="250" Grid.Column="2" Grid.Row="1" Visibility="Hidden"></PasswordBox>
+        <PasswordBox Name="box_3" Height="30" Width="250" Grid.Column="2" Grid.Row="2" Visibility="Hidden"></PasswordBox>
+        <PasswordBox Name="box_4" Height="30" Width="250" Grid.Column="2" Grid.Row="3" Visibility="Hidden"></PasswordBox>
+        
+        <!--Show buttons-->
+
+        <Button Name="show_1" Width="100" Height="25" Content="Show" Grid.Column="1" Click="show_bt_1" Visibility="Hidden"></Button>
+        <Button Name="show_2" Grid.Row="1" Width="100" Height="25" Content="Show" Grid.Column="1" Click="show_bt_2" Visibility="Hidden"></Button>
+        <Button Name="show_3" Grid.Row="2" Width="100" Height="25" Content="Show" Grid.Column="1" Click="show_bt_3" Visibility="Hidden"></Button>
+        <Button Name="show_4" Grid.Row="3" Width="100" Height="25" Content="Show" Grid.Column="1" Click="show_bt_4" Visibility="Hidden"></Button>
     </Grid>
 </Window>
