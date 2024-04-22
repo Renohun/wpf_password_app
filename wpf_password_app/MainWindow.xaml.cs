@@ -22,7 +22,6 @@ namespace wpf_password_app
         }
         private void Create_Button_Click(object sender, RoutedEventArgs e)
         {
-            
             if(pCreate_Box.Password.Length < 5)
             {
                 pCreate_Box.Clear();
@@ -33,7 +32,6 @@ namespace wpf_password_app
             {
                 if (pCreate_Box.Password.Contains("#") || pCreate_Box.Password.Contains("$") || pCreate_Box.Password.Contains("&") || pCreate_Box.Password.Contains("%"))
                 {
-
                     if (pCreate_Box.Password.Contains("0") || pCreate_Box.Password.Contains("1") || pCreate_Box.Password.Contains("2") || pCreate_Box.Password.Contains("3") || pCreate_Box.Password.Contains("4") || pCreate_Box.Password.Contains("5") || pCreate_Box.Password.Contains("6") || pCreate_Box.Password.Contains("7") || pCreate_Box.Password.Contains("8") || pCreate_Box.Password.Contains("9"))
                     {
                         FileStream fs = new FileStream("master_pw.txt", FileMode.Create); StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
@@ -64,7 +62,6 @@ namespace wpf_password_app
                     {
                         pCreate_Box.Clear(); MessageBox.Show("The password has to contain numbers", "Register Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                    
                 }
                 else
                 {
@@ -118,7 +115,7 @@ namespace wpf_password_app
                 MessageBox.Show("Successfull Log In!", "Log In", MessageBoxButton.OK, MessageBoxImage.Information);
                     
 
-                //Ide fog jonni a fo program resz
+                //Ide fog jonni a fo program resz, DE NINCSEN RENDES DESIGN avagy normalis elrendezes
 
                 pCreate_Box.Visibility = Visibility.Hidden; Log_In_Text.Visibility = Visibility.Hidden; Real_Log_In.Visibility = Visibility.Hidden;
 
@@ -130,31 +127,22 @@ namespace wpf_password_app
 
 
 
-            }
+            }   
             else
             {
                 pCreate_Box.Clear();
                 MessageBox.Show("Wrong password. Try again!", "Log In", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        int db = 0;
-        private void Delete_Sys(object sender, RoutedEventArgs e)
+        private void delete_file(object sender, RoutedEventArgs e)
         {
-            db++;
-
-            if (db == 1)
+            try
             {
-                MessageBox.Show("Azt hitted mi? Nyomd meg parszor...", "Delete", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                File.Delete("C:\\Users\\Kornel\\Desktop\\wpf_password_app\\wpf_password_app\\bin\\Debug\\net8.0-windows\\master_pw.txt");
             }
-
-            if(db == 10)
-            {
-                MessageBox.Show("Kitarto vagy! De a helyedben vigyaznek, barmi megtortenhet...", "Delete", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-
-            if (db == 50)
-            {
-                MessageBox.Show("Utolso figyelmeztetes!", "Delete", MessageBoxButton.OK, MessageBoxImage.Error);
+            catch(Exception) //erdekes, egy olyan kene ahol az ez alatt levo messageboxot megjeleniti ha a file nem letezik, de nem akarja, FileNotExceptionnal sem
+            {        
+                MessageBox.Show("The File dosen't exists", "Delete Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
