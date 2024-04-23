@@ -34,6 +34,9 @@ namespace wpf_password_app
                 {
                     if (pCreate_Box.Password.Contains("0") || pCreate_Box.Password.Contains("1") || pCreate_Box.Password.Contains("2") || pCreate_Box.Password.Contains("3") || pCreate_Box.Password.Contains("4") || pCreate_Box.Password.Contains("5") || pCreate_Box.Password.Contains("6") || pCreate_Box.Password.Contains("7") || pCreate_Box.Password.Contains("8") || pCreate_Box.Password.Contains("9"))
                     {
+                        string big_dir = @"C:\Temp";
+
+                        if(!Directory.Exists(big_dir)) { Directory.CreateDirectory(big_dir); }
 
                         string dir = @"C:\Temp\wpf_pw_app";
 
@@ -99,7 +102,7 @@ namespace wpf_password_app
             Register.Visibility = Visibility.Hidden; To_Log_In.Visibility = Visibility.Hidden; Hello.Visibility = Visibility.Hidden; select_text.Visibility = Visibility.Hidden;
 
             //Make everything visible
-            pCreate_Box.Visibility = Visibility.Visible; Log_In_Text.Visibility = Visibility.Visible; Real_Log_In.Visibility = Visibility.Visible;
+            log_in_box.Visibility = Visibility.Visible; Log_In_Text.Visibility = Visibility.Visible; Real_Log_In.Visibility = Visibility.Visible;
         }
 
         private void Actual_Log_In_Button(object sender, RoutedEventArgs e)
@@ -112,9 +115,9 @@ namespace wpf_password_app
 
             while (!sr.EndOfStream) { from_file = Convert.ToString(sr.ReadLine()); } from_file.TrimEnd();
 
-            for (int i = 0; i < pCreate_Box.Password.Length; i++)
+            for (int i = 0; i < log_in_box.Password.Length; i++)
             {
-                real_password += Convert.ToString(Convert.ToInt32(pCreate_Box.Password[i]) * 6421);
+                real_password += Convert.ToString(Convert.ToInt32(log_in_box.Password[i]) * 6421);
             }
 
             sr.Close(); fs_log_in.Close();
@@ -126,7 +129,7 @@ namespace wpf_password_app
 
                 //NINCSEN RENDES DESIGN avagy normalis elrendezes
 
-                pCreate_Box.Visibility = Visibility.Hidden; Log_In_Text.Visibility = Visibility.Hidden; Real_Log_In.Visibility = Visibility.Hidden;
+                log_in_box.Visibility = Visibility.Hidden; Log_In_Text.Visibility = Visibility.Hidden; Real_Log_In.Visibility = Visibility.Hidden;
 
                 delete_1.Visibility = Visibility.Visible; delete_2.Visibility = Visibility.Visible; delete_3.Visibility = Visibility.Visible; delete_4.Visibility = Visibility.Visible;
 
@@ -138,7 +141,7 @@ namespace wpf_password_app
             }
             else
             {
-                pCreate_Box.Clear();
+                log_in_box.Clear();
                 MessageBox.Show("Wrong password. Try again!", "Log In", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -391,6 +394,28 @@ namespace wpf_password_app
         private void show_bt_4(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void pCreate_Box_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                if(To_Log_In.Visibility == Visibility.Hidden)
+                {
+                    Create_Button_Click(sender, e);
+                }
+            }
+        }
+
+        private void log_in_box_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (Real_Log_In.Visibility == Visibility.Visible)
+                {
+                    Actual_Log_In_Button(sender, e);
+                }
+            }
         }
     }
 }
